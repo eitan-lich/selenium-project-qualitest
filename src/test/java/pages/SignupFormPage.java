@@ -25,7 +25,6 @@ public class SignupFormPage extends BasePage {
 
     public SignupFormPage(WebDriver driver) {
         super(driver, 5000);
-        countryFieldDropdown = new Select(find(countryField));
     }
 
     public boolean verifyPageLoaded() {
@@ -33,6 +32,7 @@ public class SignupFormPage extends BasePage {
     }
 
     public void filloutForm() {
+        countryFieldDropdown = new Select(find(countryField));
         click(titleRadioButton);
         typeText(firstNameField, "testtest");
         typeText(lastNameField, "test222");

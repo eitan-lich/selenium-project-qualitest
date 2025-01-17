@@ -37,8 +37,8 @@ public class Action {
     public boolean registerNewUser() {
         homePage.verifyPageLoaded();
         homePage.clickSignupLoginButton();
-//        loginPage.register();
-//        signupFormPage.filloutForm();
+        loginPage.register();
+        signupFormPage.filloutForm();
         return true;
     }
 
