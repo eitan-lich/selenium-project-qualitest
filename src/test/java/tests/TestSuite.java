@@ -3,6 +3,7 @@ package tests;
 import actions.Action;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
+import org.testng.Assert;
 import org.testng.annotations.*;
 import utils.GenerateDriver;
 import utils.JsonUtils;
@@ -42,7 +43,7 @@ public class TestSuite {
 
     @Test
     public void validateRegisterNewUser() {
-        actions.registerNewUser();
+       Assert.assertTrue(actions.registerNewUser(), "Registration test failed");
     }
 
     @AfterClass

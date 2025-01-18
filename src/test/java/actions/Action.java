@@ -11,23 +11,25 @@ public class Action {
     CartPage cartPage;
     CheckoutPage checkoutPage;
     HomePage homePage;
-    LoginPage loginPage;
+    SignupLoginPage signupLoginPage;
     PaymentPage paymentPage;
     ProductsPage productsPage;
     ProductDetailsPage productDetailsPage;
     SignupFormPage signupFormPage;
     TestCasesPage testCasesPage;
+    AccountDeletedPage accountDeletedPage;
 
     public Action(WebDriver driver) {
         homePage = new HomePage(driver);
         cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
-        loginPage = new LoginPage(driver);
+        signupLoginPage = new SignupLoginPage(driver);
         paymentPage = new PaymentPage(driver);
         productsPage = new ProductsPage(driver);
         productDetailsPage = new ProductDetailsPage(driver);
         signupFormPage = new SignupFormPage(driver);
         testCasesPage = new TestCasesPage(driver);
+        accountDeletedPage = new AccountDeletedPage(driver);
     }
 
     public boolean login() {
@@ -37,8 +39,14 @@ public class Action {
     public boolean registerNewUser() {
         homePage.verifyPageLoaded();
         homePage.clickSignupLoginButton();
-        loginPage.register();
+        signupLoginPage.verifyPageLoaded();
+        signupLoginPage.filloutRegister();
+        signupFormPage.verifyPageLoaded();
         signupFormPage.filloutForm();
+        homePage.validateLoggedInUserExists();
+        homePage.clickDeleteAccount();
+        accountDeletedPage.verifySuccessMessage();
+        accountDeletedPage.clickContinueButton();
         return true;
     }
 

@@ -33,4 +33,8 @@ public class BasePage {
     public WebElement find(By locator) {
         return wait.until(ExpectedConditions.visibilityOfElementLocated(locator));
     }
+
+    public String elementText(By locator) {
+        return find(locator).getText();
+    }
 }
