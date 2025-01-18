@@ -15,8 +15,8 @@ public class SignupLoginPage extends BasePage {
     }
 
     public void filloutRegister() {
-        typeText(newUserNameField, "testuser123123123");
-        typeText(newUserEmailAddressField, "test123123123123@test123123.com");
+        typeText(newUserNameField, "Testuser943");
+        typeText(newUserEmailAddressField, "Testuser943@Testuser9431.com");
         click(newUserSignupButton);
     }
 
