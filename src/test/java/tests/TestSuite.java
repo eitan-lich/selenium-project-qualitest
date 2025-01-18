@@ -17,8 +17,16 @@ public class TestSuite {
     public void setUp() {
         String browserType = JsonUtils.readJsonFromFile("browserType");
         String url = JsonUtils.readJsonFromFile("url");
-        driver = GenerateDriver.initDriver(browserType,url);
+        driver = GenerateDriver.initDriver(browserType, url);
         actions = new Action(driver);
+    }
+
+    @Test
+    public void testUserCanRegister() {
+        Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
+        Assert.assertTrue(actions.register(), "Did not manage to register successfully");
+        Assert.assertNotNull(actions.getLoggedInUser(), "User doesn't not display as logged in");
+        Assert.assertTrue(actions.deleteAccount(), "Did not manage to delete account");
     }
 
     @Test
@@ -41,10 +49,6 @@ public class TestSuite {
 
     }
 
-    @Test
-    public void validateRegisterNewUser() {
-       Assert.assertTrue(actions.registerNewUser(), "Registration test failed");
-    }
 
     @AfterClass
     public void tearDown() {

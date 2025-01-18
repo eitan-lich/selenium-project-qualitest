@@ -11,9 +11,8 @@ public class HomePage extends BasePage {
     private By deleteAccountButton = By.cssSelector("a[href='/delete_account']");
 
     public HomePage(WebDriver driver) {
-        super(driver, 5000);
+        super(driver, 5);
     }
-
 
     public boolean verifyPageLoaded() {
         return validateElementExist(automationExerciseLogo);
@@ -25,10 +24,6 @@ public class HomePage extends BasePage {
 
     public String getLoggedInUser() {
         return elementText(loggedInAs);
-    }
-
-    public boolean validateLoggedInUserExists() {
-        return validateElementExist(loggedInAs);
     }
 
     public void clickDeleteAccount() {

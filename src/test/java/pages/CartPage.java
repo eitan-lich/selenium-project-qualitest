@@ -6,6 +6,6 @@ import pages.BasePage;
 public class CartPage extends BasePage {
 
     public CartPage(WebDriver driver) {
-        super(driver, 10000);
+        super(driver, 5);
     }
 }

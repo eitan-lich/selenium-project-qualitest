@@ -34,7 +34,7 @@ public class SignupFormPage extends BasePage {
     private Select dateOfBirthYearDropdown;
 
     public SignupFormPage(WebDriver driver) {
-        super(driver, 5000);
+        super(driver, 5);
     }
 
     public boolean verifyPageLoaded() {
