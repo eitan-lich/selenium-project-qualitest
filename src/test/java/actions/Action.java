@@ -70,8 +70,18 @@ public class Action {
         return homePage.verifyPageLoaded();
     }
 
-    public boolean login() {
-        return true;
+    public void login(String email, String password) {
+        homePage.clickSignupLoginButton();
+        signupLoginPage.filloutLogin(email, password);
+    }
+
+    public boolean verifyLoginErrorMessage() {
+        return signupLoginPage.verifyLoginErrorMessage();
+    }
+
+    public boolean verifyTestCasesPageLoaded() {
+        homePage.clickTestCasesButton();
+        return testCasesPage.verifyTestCasesMessage();
     }
 
     public boolean addItemToCart() {

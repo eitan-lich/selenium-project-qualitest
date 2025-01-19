@@ -31,12 +31,13 @@ public class TestSuite {
 
     @Test
     public void validateLoginWithIncorrectEmailAndPassword() {
-
+        actions.login("incorrectemail@incorrect.com", "incorrectPassword");
+        Assert.assertTrue(actions.verifyLoginErrorMessage(), "Error message did not appear");
     }
 
     @Test
     public void validateTestCasesPage() {
-
+        Assert.assertTrue(actions.verifyTestCasesPageLoaded(), "Test cases page did not load successfully");
     }
 
     @Test
