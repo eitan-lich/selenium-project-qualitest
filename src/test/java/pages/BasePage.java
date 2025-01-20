@@ -15,7 +15,7 @@ public class BasePage {
 
     public BasePage(WebDriver driver, int timeout) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(1));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
     }
 
     public void click(By locator) {
