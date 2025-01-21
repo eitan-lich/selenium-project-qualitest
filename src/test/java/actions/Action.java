@@ -15,6 +15,7 @@ public class Action {
     AccountDeletedPage accountDeletedPage;
     CheckoutPage checkoutPage;
     ProductDetailsPage productDetailsPage;
+    ProductsPage productsPage;
     TestCasesPage testCasesPage;
 
     public Action(WebDriver driver) {
@@ -25,6 +26,7 @@ public class Action {
         accountDeletedPage = new AccountDeletedPage(driver);
         checkoutPage = new CheckoutPage(driver);
         productDetailsPage = new ProductDetailsPage(driver);
+        productsPage = new ProductsPage(driver);
         testCasesPage = new TestCasesPage(driver);
     }
 
@@ -39,9 +41,9 @@ public class Action {
         signupFormPage.verifyPageLoaded();
         logger.info("Filling out detailed register form");
         signupFormPage.filloutForm();
-        accountCreatedPage.validateSuccessMessage();
+        boolean successfulRegister = accountCreatedPage.validateSuccessMessage();
         accountCreatedPage.clickContinueButton();
-        return true;
+        return successfulRegister;
     }
 
     public boolean deleteAccount() {
@@ -64,18 +66,19 @@ public class Action {
         return homePage.verifyPageLoaded();
     }
 
-    public void login(String email, String password) {
+    public boolean loginWithWrongCredentials() {
         homePage.clickSignupLoginButton();
-        signupLoginPage.filloutLogin(email, password);
-    }
-
-    public boolean verifyLoginErrorMessage() {
+        boolean pageLoaded = signupLoginPage.verifyPageLoaded();
+        if (!pageLoaded) {
+            return false;
+        }
+        signupLoginPage.filloutLogin("incorrectemail@incorrect.com", "incorrectPassword");
         return signupLoginPage.verifyLoginErrorMessage();
     }
 
-    public boolean verifyTestCasesPageLoaded() {
+    public boolean goToTestCasesPage() {
         homePage.clickTestCasesButton();
-        return testCasesPage.verifyTestCasesMessage();
+        return testCasesPage.verifyPageLoaded();
     }
 
     public void addItemAndCheckout() {
@@ -106,5 +109,10 @@ public class Action {
     public boolean verifyReview() {
         productDetailsPage.VerifyAddReview();
         return true;
+    }
+
+    public boolean goToProductsPage() {
+        homePage.clickProductsButton();
+        return productsPage.verifyPageLoaded();
     }
 }

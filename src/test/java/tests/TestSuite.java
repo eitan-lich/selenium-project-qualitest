@@ -1,10 +1,7 @@
 package tests;
 
 import actions.Action;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
 import org.testng.annotations.*;
 import utils.GenerateDriver;
@@ -32,18 +29,19 @@ public class TestSuite {
     }
 
     @Test
-    public void validateLoginWithIncorrectEmailAndPassword() {
-        actions.login("incorrectemail@incorrect.com", "incorrectPassword");
-        Assert.assertTrue(actions.verifyLoginErrorMessage(), "Error message did not appear");
+    public void testLoginWithIncorrectEmailAndPassword() {
+        Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
+        Assert.assertTrue(actions.loginWithWrongCredentials(), "Incorrect login did not fail as expected");
     }
 
     @Test
-    public void validateTestCasesPage() {
-        Assert.assertTrue(actions.verifyTestCasesPageLoaded(), "Test cases page did not load successfully");
+    public void verifyTestCasesPage() {
+        Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
+        Assert.assertTrue(actions.goToTestCasesPage(), "Test cases page did not load successfully");
     }
 
     @Test
-    public void validateRegisterFromCheckoutPage() throws InterruptedException {
+    public void testRegisterFromCheckoutPage() throws InterruptedException {
         actions.addItemAndCheckout();
         Assert.assertTrue(actions.verifyCheckoutPageLoaded(), "Check page did not load successfully");
         actions.clickProccedToCheckoutButton();
@@ -54,7 +52,8 @@ public class TestSuite {
     }
 
     @Test
-    public void validateAddingReviewToProduct() {
+    public void testAddingReviewToProduct() {
+        Assert.assertTrue(actions.goToProductsPage(), "All products page did not load successfully");
         actions.addReviewToProduct();
         Assert.assertTrue(actions.verifyReview(), "Error to add review");
 
