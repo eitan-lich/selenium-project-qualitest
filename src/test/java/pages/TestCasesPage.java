@@ -11,7 +11,6 @@ public class TestCasesPage extends BasePage {
         super(driver, 5);
     }
 
-    public boolean verifyTestCasesMessage() {
-        return validateElementExist(testCasesMessage);
+    public boolean verifyTestCasesMessage() {return validateElementExist(testCasesMessage);
     }
 }

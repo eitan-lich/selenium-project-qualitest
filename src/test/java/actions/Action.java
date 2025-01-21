@@ -83,6 +83,26 @@ public class Action {
         homePage.clickTestCasesButton();
         return testCasesPage.verifyTestCasesMessage();
     }
+    public void addItemAndCheckout() {
+        homePage.clickAddCartButton();
+        if (!homePage.verifyCheckoutMessageLoaded()) {
+            return;
+        }
+        homePage.clickViewCartButton();
+    }
+    public boolean verifyCheckoutPageLoaded() {
+        return checkoutPage.verifyCheckoutPageLoaded();
+    }
+
+    public void clickProccedToCheckoutButton() throws InterruptedException {
+        checkoutPage.clickProccedToCheckoutButton();
+        Thread.sleep(3000);
+    }
+    public void clickRegisterLoginButton(){
+        checkoutPage.clickRegisterLoginButton();
+
+
+    }
 
     public boolean addItemToCart() {
         return true;
@@ -92,7 +112,12 @@ public class Action {
         return true;
     }
 
-    public boolean addReviewToProduct() {
+    public void addReviewToProduct() {
+         homePage.clickViewProductButton();
+    }
+
+    public boolean verifyReview() {
+        productDetailsPage.VerifyAddReview();
         return true;
     }
 }

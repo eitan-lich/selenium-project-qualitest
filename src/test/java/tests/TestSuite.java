@@ -1,6 +1,8 @@
 package tests;
 
 import actions.Action;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.interactions.Actions;
 import org.testng.Assert;
@@ -12,6 +14,7 @@ public class TestSuite {
 
     WebDriver driver;
     Action actions;
+    private Logger logger;
 
     @BeforeClass
     public void setUp() {
@@ -19,6 +22,7 @@ public class TestSuite {
         String url = JsonUtils.readJsonFromFile("url");
         driver = GenerateDriver.initDriver(browserType, url);
         actions = new Action(driver);
+        logger = LogManager.getLogger(TestSuite.class);
     }
 
     @Test
@@ -41,12 +45,21 @@ public class TestSuite {
     }
 
     @Test
-    public void validateRegisterFromCheckoutPage() {
-
+    public void validateRegisterFromCheckoutPage() throws InterruptedException {
+        actions.addItemAndCheckout();
+        Assert.assertTrue(actions.verifyCheckoutPageLoaded(), "Check page did not load successfully");
+        actions.clickProccedToCheckoutButton();
+        actions.clickRegisterLoginButton();
+        Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
+        Assert.assertTrue(actions.register(), "Did not manage to register successfully");
+        Assert.assertNotNull(actions.getLoggedInUser(), "User doesn't not display as logged in");
     }
 
     @Test
     public void validateAddingReviewToProduct() {
+    actions.addReviewToProduct();
+    Assert.assertTrue(actions.verifyReview(), "Error to add review");
+
 
     }
 
