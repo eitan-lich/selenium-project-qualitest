@@ -41,13 +41,10 @@ public class TestSuite {
     }
 
     @Test
-    public void testRegisterFromCheckoutPage() throws InterruptedException {
-        actions.addItemAndCheckout();
-        Assert.assertTrue(actions.verifyCheckoutPageLoaded(), "Check page did not load successfully");
-        actions.clickProccedToCheckoutButton();
-        actions.clickRegisterLoginButton();
+    public void testRegisterFromCheckoutPage() {
         Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
-        Assert.assertTrue(actions.register(), "Did not manage to register successfully");
+        actions.addItemAndCheckout();
+        Assert.assertTrue(actions.registerFromCartPage(), "Did not manage to register successfully");
         Assert.assertNotNull(actions.getLoggedInUser(), "User doesn't not display as logged in");
     }
 

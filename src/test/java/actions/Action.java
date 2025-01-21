@@ -13,7 +13,7 @@ public class Action {
     SignupFormPage signupFormPage;
     AccountCreatedPage accountCreatedPage;
     AccountDeletedPage accountDeletedPage;
-    CheckoutPage checkoutPage;
+    cartPage cartPage;
     ProductDetailsPage productDetailsPage;
     ProductsPage productsPage;
     TestCasesPage testCasesPage;
@@ -24,7 +24,7 @@ public class Action {
         signupFormPage = new SignupFormPage(driver);
         accountCreatedPage = new AccountCreatedPage(driver);
         accountDeletedPage = new AccountDeletedPage(driver);
-        checkoutPage = new CheckoutPage(driver);
+        cartPage = new cartPage(driver);
         productDetailsPage = new ProductDetailsPage(driver);
         productsPage = new ProductsPage(driver);
         testCasesPage = new TestCasesPage(driver);
@@ -87,19 +87,15 @@ public class Action {
             return;
         }
         homePage.clickViewCartButton();
+        if (!cartPage.verifyCheckoutPageLoaded()) {
+            return;
+        }
+        cartPage.clickProceedToCheckoutButton();
     }
 
-    public boolean verifyCheckoutPageLoaded() {
-        return checkoutPage.verifyCheckoutPageLoaded();
-    }
-
-    public void clickProccedToCheckoutButton() throws InterruptedException {
-        checkoutPage.clickProccedToCheckoutButton();
-        Thread.sleep(3000);
-    }
-
-    public void clickRegisterLoginButton() {
-        checkoutPage.clickRegisterLoginButton();
+    public boolean registerFromCartPage() {
+        cartPage.clickRegisterLoginButton();
+        return register();
     }
 
     public boolean addReviewToProduct() {
