@@ -14,7 +14,6 @@ public class TestSuite {
 
     WebDriver driver;
     Action actions;
-    private Logger logger;
 
     @BeforeClass
     public void setUp() {
@@ -22,7 +21,6 @@ public class TestSuite {
         String url = JsonUtils.readJsonFromFile("url");
         driver = GenerateDriver.initDriver(browserType, url);
         actions = new Action(driver);
-        logger = LogManager.getLogger(TestSuite.class);
     }
 
     @Test
@@ -57,12 +55,10 @@ public class TestSuite {
 
     @Test
     public void validateAddingReviewToProduct() {
-    actions.addReviewToProduct();
-    Assert.assertTrue(actions.verifyReview(), "Error to add review");
-
+        actions.addReviewToProduct();
+        Assert.assertTrue(actions.verifyReview(), "Error to add review");
 
     }
-
 
     @AfterClass
     public void tearDown() {

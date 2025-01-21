@@ -15,10 +15,6 @@ public class HomePage extends BasePage {
     private By ViewCart = By.xpath("//u[text()='View Cart']");
     private By ViewProduct = By.cssSelector("a[href='/product_details/1']");
 
-
-
-
-
     public HomePage(WebDriver driver) {
         super(driver, 5);
     }
@@ -43,17 +39,20 @@ public class HomePage extends BasePage {
         click(deleteAccountButton);
     }
 
-    public void clickAddCartButton() {click(AddToCartButton);}
+    public void clickAddCartButton() {
+        click(AddToCartButton);
+    }
 
-    public boolean verifyCheckoutMessageLoaded() {return validateElementExist(CheckoutMessage); }
+    public boolean verifyCheckoutMessageLoaded() {
+        return validateElementExist(CheckoutMessage);
+    }
 
-    public void clickViewCartButton() {click (ViewCart); }
+    public void clickViewCartButton() {
+        click(ViewCart);
+    }
 
-    public boolean verifyCheckoutPageLoaded() {return validateElementExist(ViewCart); }
-
-    public void clickViewProductButton() {click(ViewProduct); }
-
-
-
+    public void clickViewProductButton() {
+        click(ViewProduct);
+    }
 
 }

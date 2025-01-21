@@ -13,10 +13,7 @@ public class Action {
     SignupFormPage signupFormPage;
     AccountCreatedPage accountCreatedPage;
     AccountDeletedPage accountDeletedPage;
-    CartPage cartPage;
     CheckoutPage checkoutPage;
-    PaymentPage paymentPage;
-    ProductsPage productsPage;
     ProductDetailsPage productDetailsPage;
     TestCasesPage testCasesPage;
 
@@ -26,10 +23,7 @@ public class Action {
         signupFormPage = new SignupFormPage(driver);
         accountCreatedPage = new AccountCreatedPage(driver);
         accountDeletedPage = new AccountDeletedPage(driver);
-        cartPage = new CartPage(driver);
         checkoutPage = new CheckoutPage(driver);
-        paymentPage = new PaymentPage(driver);
-        productsPage = new ProductsPage(driver);
         productDetailsPage = new ProductDetailsPage(driver);
         testCasesPage = new TestCasesPage(driver);
     }
@@ -83,6 +77,7 @@ public class Action {
         homePage.clickTestCasesButton();
         return testCasesPage.verifyTestCasesMessage();
     }
+
     public void addItemAndCheckout() {
         homePage.clickAddCartButton();
         if (!homePage.verifyCheckoutMessageLoaded()) {
@@ -90,6 +85,7 @@ public class Action {
         }
         homePage.clickViewCartButton();
     }
+
     public boolean verifyCheckoutPageLoaded() {
         return checkoutPage.verifyCheckoutPageLoaded();
     }
@@ -98,22 +94,13 @@ public class Action {
         checkoutPage.clickProccedToCheckoutButton();
         Thread.sleep(3000);
     }
-    public void clickRegisterLoginButton(){
+
+    public void clickRegisterLoginButton() {
         checkoutPage.clickRegisterLoginButton();
-
-
-    }
-
-    public boolean addItemToCart() {
-        return true;
-    }
-
-    public boolean purchaseItem() {
-        return true;
     }
 
     public void addReviewToProduct() {
-         homePage.clickViewProductButton();
+        homePage.clickViewProductButton();
     }
 
     public boolean verifyReview() {
