@@ -54,9 +54,7 @@ public class TestSuite {
     @Test
     public void testAddingReviewToProduct() {
         Assert.assertTrue(actions.goToProductsPage(), "All products page did not load successfully");
-        actions.addReviewToProduct();
-        Assert.assertTrue(actions.verifyReview(), "Error to add review");
-
+        Assert.assertTrue(actions.addReviewToProduct(), "Error to add review");
     }
 
     @AfterClass

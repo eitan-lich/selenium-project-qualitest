@@ -102,13 +102,10 @@ public class Action {
         checkoutPage.clickRegisterLoginButton();
     }
 
-    public void addReviewToProduct() {
-        homePage.clickViewProductButton();
-    }
-
-    public boolean verifyReview() {
-        productDetailsPage.VerifyAddReview();
-        return true;
+    public boolean addReviewToProduct() {
+        productsPage.clickViewProductButton();
+        productDetailsPage.addReview();
+        return productDetailsPage.verifyReviewAdded();
     }
 
     public boolean goToProductsPage() {

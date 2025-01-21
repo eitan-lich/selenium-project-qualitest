@@ -6,6 +6,7 @@ import org.openqa.selenium.WebDriver;
 public class ProductsPage extends BasePage {
 
     private By allProductsHeader = By.xpath("//h2[text()='All Products']");
+    private By ViewProduct = By.cssSelector("a[href='/product_details/1']");
 
     public ProductsPage(WebDriver driver) {
         super(driver, 5);
@@ -13,5 +14,9 @@ public class ProductsPage extends BasePage {
 
     public boolean verifyPageLoaded() {
         return validateElementExist(allProductsHeader);
+    }
+
+    public void clickViewProductButton() {
+        click(ViewProduct);
     }
 }
