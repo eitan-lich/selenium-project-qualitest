@@ -4,8 +4,11 @@ import actions.Action;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.*;
+import utils.ExcelUtils;
 import utils.GenerateDriver;
 import utils.JsonUtils;
+
+import java.io.IOException;
 
 public class TestSuite {
 
@@ -20,7 +23,13 @@ public class TestSuite {
         actions = new Action(driver);
     }
 
-    @Test
+    @DataProvider(name = "excelData")
+    public Object[][] getData() throws IOException {
+        String filePath = "testData.xlsx";
+        String sheetName = "Sheet1";
+        return ExcelUtils.getExcelData(filePath, sheetName);
+    }
+
     public void testUserCanRegister() {
         Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
         Assert.assertTrue(actions.register(), "Did not manage to register successfully");
@@ -48,8 +57,8 @@ public class TestSuite {
         Assert.assertNotNull(actions.getLoggedInUser(), "User doesn't not display as logged in");
     }
 
-    @Test
-    public void testAddingReviewToProduct() {
+    @Test (dataProvider = "excelData")
+    public void testAddingReviewToProduct(String name, String email, String review) {
         Assert.assertTrue(actions.goToProductsPage(), "All products page did not load successfully");
         Assert.assertTrue(actions.addReviewToProduct(), "Error to add review");
     }
