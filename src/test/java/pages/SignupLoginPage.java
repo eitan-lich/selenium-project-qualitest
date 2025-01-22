@@ -2,6 +2,7 @@ package pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
+import utils.GeneralUtils;
 
 public class SignupLoginPage extends BasePage {
 
@@ -15,12 +16,13 @@ public class SignupLoginPage extends BasePage {
     private By existingUserLoginButton = By.cssSelector("button[data-qa='login-button']");
 
     public SignupLoginPage(WebDriver driver) {
-        super(driver, 5000);
+        super(driver);
     }
 
     public void filloutRegister() {
-        typeText(newUserNameField, "Testuser943");
-        typeText(newUserEmailAddressField, "Testuser943@Testuser9431.com");
+        String randomNumberSequence = GeneralUtils.generateRandomNumberSequence();
+        typeText(newUserNameField, "Testuser" + randomNumberSequence);
+        typeText(newUserEmailAddressField, "Testuser" + randomNumberSequence + "@Testuser" + randomNumberSequence + ".com");
         click(newUserSignupButton);
     }
 

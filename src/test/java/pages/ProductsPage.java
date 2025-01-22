@@ -9,7 +9,7 @@ public class ProductsPage extends BasePage {
     private By ViewProduct = By.cssSelector("a[href='/product_details/1']");
 
     public ProductsPage(WebDriver driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     public boolean verifyPageLoaded() {
@@ -17,6 +17,7 @@ public class ProductsPage extends BasePage {
     }
 
     public void clickViewProductButton() {
+        scrollDown(200);
         click(ViewProduct);
     }
 }

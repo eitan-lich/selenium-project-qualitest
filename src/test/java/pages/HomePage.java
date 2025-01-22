@@ -13,11 +13,10 @@ public class HomePage extends BasePage {
     private By AddToCartButton = By.xpath("(//a[text()='Add to cart'])[1]");
     private By CheckoutMessage = By.xpath("//p[text()='Your product has been added to cart.']");
     private By ViewCart = By.xpath("//u[text()='View Cart']");
-
     private By productsButton = By.cssSelector("a[href='/products']");
 
     public HomePage(WebDriver driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     public boolean verifyPageLoaded() {
@@ -55,4 +54,5 @@ public class HomePage extends BasePage {
     public void clickProductsButton() {
         click(productsButton);
     }
+
 }

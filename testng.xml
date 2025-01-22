@@ -1,22 +1,19 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="All Test Suite">
-    <test verbose="2" preserve-order="true" name="C:/Users/eitan/IdeaProjects/selenium-project-qualitest">
+<!--    <test verbose="2" preserve-order="true" name="Sanity">-->
+<!--        <classes>-->
+<!--            <class name="tests.TestSuite"/>-->
+<!--        </classes>-->
+<!--    </test>-->
+    <test name="test">
+    <groups>
+        <run>
+            <include name="Regression"/>
+        </run>
+    </groups>
         <classes>
-            <class name="pages.SignupLoginPage">
-                <methods>
-                    <include name="verifyPageLoaded"/>
-                </methods>
-            </class>
-            <class name="tests.TestSuite">
-                <methods>
-                    <include name="validateLoginWithIncorrectEmailAndPassword"/>
-                    <include name="validateTestCasesPage"/>
-                    <include name="validateRegisterFromCheckoutPage"/>
-                    <include name="validateAddingReviewToProduct"/>
-                    <include name="validateRegisterNewUser"/>
-                </methods>
-            </class>
+            <class name="tests.TestSuite"/>
         </classes>
     </test>
 </suite>

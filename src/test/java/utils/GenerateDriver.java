@@ -4,6 +4,7 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.json.Json;
 
 public class GenerateDriver {
 
@@ -29,5 +30,10 @@ public class GenerateDriver {
         driver.get(url);
 
         return driver;
+    }
+
+    public static void navigateToDefaultPage(WebDriver driver) {
+        String url = JsonUtils.readJsonFromFile("url");
+        driver.get(url);
     }
 }

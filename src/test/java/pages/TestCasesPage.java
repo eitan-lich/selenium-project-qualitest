@@ -8,7 +8,7 @@ public class TestCasesPage extends BasePage {
     private By testCasesMessage = By.xpath("//span[text()='Below is the list of test Cases for you to practice the Automation. Click on the scenario for detailed Test Steps:']");
 
     public TestCasesPage(WebDriver driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     public boolean verifyPageLoaded() {

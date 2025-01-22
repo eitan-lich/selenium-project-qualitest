@@ -8,8 +8,6 @@ public class SignupFormPage extends BasePage {
 
     private By enterAccountInformationHeader = By.xpath("//b[text()='Enter Account Information']");
     private By titleRadioButton = By.id("id_gender1");
-    private By nameField = By.id("name");
-    private By emailField = By.id("email");
     private By passwordField = By.id("password");
     private By dateOfBirthDay = By.id("days");
     private By dateOfBirthMonth = By.id("months");
@@ -34,7 +32,7 @@ public class SignupFormPage extends BasePage {
     private Select dateOfBirthYearDropdown;
 
     public SignupFormPage(WebDriver driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     public boolean verifyPageLoaded() {
@@ -58,7 +56,7 @@ public class SignupFormPage extends BasePage {
         typeText(lastNameField, "Smith");
         typeText(companyField, "Company");
         typeText(addressField1, "Tel Aviv");
-        typeText(addressField1, "Haifa");
+        typeText(addressField2, "Haifa");
         countryFieldDropdown.selectByValue("Israel");
         typeText(stateField, "Israel");
         typeText(cityField, "Tel Aviv");

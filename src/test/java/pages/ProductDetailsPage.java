@@ -12,13 +12,14 @@ public class ProductDetailsPage extends BasePage {
     private By successMessage = By.xpath("//span[text()='Thank you for your review.']");
 
     public ProductDetailsPage(WebDriver driver) {
-        super(driver, 5);
+        super(driver);
     }
 
-    public void addReview() {
-        typeText(YourNameField, "Testuser943");
-        typeText(EmailAdressField, "Testuser943@Testuser9431.com");
-        typeText(AddReviewField, "Automation it's amazing");
+    public void addReview(String name, String email, String review) {
+        typeText(YourNameField, name);
+        typeText(EmailAdressField, email);
+        typeText(AddReviewField, review);
+        scrollDown(200);
         click(SubmitButton);
     }
 

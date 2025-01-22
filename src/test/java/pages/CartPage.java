@@ -3,13 +3,13 @@ package pages;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
-public class cartPage extends BasePage {
+public class CartPage extends BasePage {
 
     private By RegisterLogin = By.xpath("//u[text()='Register / Login']");
     private By ProceedToCheckout = By.xpath("//a[text()='Proceed To Checkout']");
 
-    public cartPage(WebDriver driver) {
-        super(driver, 5);
+    public CartPage(WebDriver driver) {
+        super(driver);
     }
 
     public boolean verifyCheckoutPageLoaded() {

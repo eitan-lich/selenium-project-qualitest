@@ -1,8 +1,6 @@
 package pages;
 
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.WebElement;
+import org.openqa.selenium.*;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
@@ -13,9 +11,9 @@ public class BasePage {
     protected WebDriver driver;
     protected WebDriverWait wait;
 
-    public BasePage(WebDriver driver, int timeout) {
+    public BasePage(WebDriver driver) {
         this.driver = driver;
-        this.wait = new WebDriverWait(driver, Duration.ofSeconds(timeout));
+        this.wait = new WebDriverWait(driver, Duration.ofSeconds(10));
     }
 
     public void click(By locator) {
@@ -36,5 +34,10 @@ public class BasePage {
 
     public String elementText(By locator) {
         return find(locator).getText();
+    }
+
+    public void scrollDown(int scrollAmount) {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.scrollBy(0,arguments[0]);", scrollAmount);
     }
 }

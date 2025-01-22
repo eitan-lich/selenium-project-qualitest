@@ -9,7 +9,7 @@ public class AccountCreatedPage extends BasePage {
     private By continueButton = By.cssSelector("a[data-qa='continue-button']");
 
     public AccountCreatedPage(WebDriver driver) {
-        super(driver, 5);
+        super(driver);
     }
 
     public boolean validateSuccessMessage() {

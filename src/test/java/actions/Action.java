@@ -13,7 +13,7 @@ public class Action {
     SignupFormPage signupFormPage;
     AccountCreatedPage accountCreatedPage;
     AccountDeletedPage accountDeletedPage;
-    cartPage cartPage;
+    CartPage cartPage;
     ProductDetailsPage productDetailsPage;
     ProductsPage productsPage;
     TestCasesPage testCasesPage;
@@ -24,7 +24,7 @@ public class Action {
         signupFormPage = new SignupFormPage(driver);
         accountCreatedPage = new AccountCreatedPage(driver);
         accountDeletedPage = new AccountDeletedPage(driver);
-        cartPage = new cartPage(driver);
+        cartPage = new CartPage(driver);
         productDetailsPage = new ProductDetailsPage(driver);
         productsPage = new ProductsPage(driver);
         testCasesPage = new TestCasesPage(driver);
@@ -98,9 +98,9 @@ public class Action {
         return register();
     }
 
-    public boolean addReviewToProduct() {
+    public boolean addReviewToProduct(String name, String email, String review) {
         productsPage.clickViewProductButton();
-        productDetailsPage.addReview();
+        productDetailsPage.addReview(name, email, review);
         return productDetailsPage.verifyReviewAdded();
     }
 
