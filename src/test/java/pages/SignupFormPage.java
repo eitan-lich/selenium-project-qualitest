@@ -39,29 +39,83 @@ public class SignupFormPage extends BasePage {
         return validateElementExist(enterAccountInformationHeader);
     }
 
-    public void filloutForm() {
-        countryFieldDropdown = new Select(find(countryField));
-        dateOfBirthDayDropdown = new Select(find(dateOfBirthDay));
-        dateOfBirthMonthDropdown = new Select(find(dateOfBirthMonth));
-        dateOfBirthYearDropdown = new Select(find(dateOfBirthYear));
-
+    public void clickTitleButton() {
         click(titleRadioButton);
-        typeText(passwordField, "Password123!");
-        dateOfBirthDayDropdown.selectByValue("19");
-        dateOfBirthMonthDropdown.selectByVisibleText("May");
-        dateOfBirthYearDropdown.selectByValue("2000");
+    }
+
+    public void typePassword(String password) {
+        typeText(passwordField, password);
+    }
+
+    public void selectBirthDay(String day) {
+        dateOfBirthDayDropdown = new Select(find(dateOfBirthDay));
+        dateOfBirthDayDropdown.selectByValue(day);
+    }
+
+    public void selectBirthMonth(String month) {
+        dateOfBirthMonthDropdown = new Select(find(dateOfBirthMonth));
+        dateOfBirthMonthDropdown.selectByVisibleText(month);
+    }
+
+    public void selectBirthYear(String year) {
+        dateOfBirthYearDropdown = new Select(find(dateOfBirthYear));
+        dateOfBirthYearDropdown.selectByValue(year);
+    }
+
+    public void clickSignupNewsletterCheckbox() {
         click(signupNewsletterCheckbox);
+    }
+
+    public void clickSpecialOffersCheckbox() {
         click(specialOffersCheckbox);
-        typeText(firstNameField, "John");
-        typeText(lastNameField, "Smith");
-        typeText(companyField, "Company");
-        typeText(addressField1, "Tel Aviv");
-        typeText(addressField2, "Haifa");
-        countryFieldDropdown.selectByValue("Israel");
-        typeText(stateField, "Israel");
-        typeText(cityField, "Tel Aviv");
-        typeText(zipcodeField, "123444555");
-        typeText(mobileNumberField, "00000000");
+    }
+
+    public void typeCompany(String company) {
+        typeText(companyField, company);
+    }
+
+    public void typeFirstName(String firstName) {
+        typeText(firstNameField, firstName);
+    }
+
+    public void typeLastNameField(String lastName) {
+        typeText(lastNameField, lastName);
+    }
+
+    public void typeCompanyField(String company) {
+        typeText(companyField, company);
+    }
+
+    public void typeAddress1(String address) {
+        typeText(addressField1, address);
+    }
+
+    public void typeAddress2(String address) {
+        typeText(addressField2, address);
+    }
+
+    public void selectCountry(String country) {
+        countryFieldDropdown = new Select(find(countryField));
+        countryFieldDropdown.selectByValue(country);
+    }
+
+    public void typeState(String state) {
+        typeText(stateField, state);
+    }
+
+    public void typeCity(String city) {
+        typeText(cityField, city);
+    }
+
+    public void typeZipCode(String zipcode) {
+        typeText(zipcodeField, zipcode);
+    }
+
+    public void typeMobileNumber(String number) {
+        typeText(mobileNumberField, number);
+    }
+
+    public void clickCreateAccountButton() {
         click(createAccountButton);
     }
 }

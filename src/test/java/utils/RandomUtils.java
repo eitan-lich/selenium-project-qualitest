@@ -2,7 +2,7 @@ package utils;
 
 import java.util.Random;
 
-public class GeneralUtils {
+public class RandomUtils {
 
     public static String generateRandomNumberSequence() {
         Random random = new Random();

@@ -9,7 +9,7 @@ public class Action {
 
     private static final Logger logger = LogManager.getLogger(Action.class);
     HomePage homePage;
-    SignupLoginPage signupLoginPage;
+    LoginPage loginPage;
     SignupFormPage signupFormPage;
     AccountCreatedPage accountCreatedPage;
     AccountDeletedPage accountDeletedPage;
@@ -20,7 +20,7 @@ public class Action {
 
     public Action(WebDriver driver) {
         homePage = new HomePage(driver);
-        signupLoginPage = new SignupLoginPage(driver);
+        loginPage = new LoginPage(driver);
         signupFormPage = new SignupFormPage(driver);
         accountCreatedPage = new AccountCreatedPage(driver);
         accountDeletedPage = new AccountDeletedPage(driver);
@@ -33,14 +33,32 @@ public class Action {
     public boolean register() {
         logger.info("Clicking Signup / Login button");
         homePage.clickSignupLoginButton();
-        signupLoginPage.verifyPageLoaded();
-        logger.info("Verifying Signup page loaded successfully");
+        logger.info("Verifying login page loaded");
+        loginPage.verifyPageLoaded();
         logger.info("Filling out initial signup form");
-        signupLoginPage.filloutRegister();
-        logger.info("Verifying Signup detailed page loaded successfully");
+        loginPage.typeNewUsername();
+        loginPage.typeNewUserEmailAddress();
+        loginPage.clickNewUserSignUpButton();
+        logger.info("Verifying registration form page loaded");
         signupFormPage.verifyPageLoaded();
-        logger.info("Filling out detailed register form");
-        signupFormPage.filloutForm();
+        logger.info("Filling out registration form");
+        signupFormPage.clickTitleButton();
+        signupFormPage.typePassword("Test");
+        signupFormPage.selectBirthDay("19");
+        signupFormPage.selectBirthMonth("May");
+        signupFormPage.selectBirthYear("2000");
+        signupFormPage.clickSignupNewsletterCheckbox();
+        signupFormPage.clickSpecialOffersCheckbox();
+        signupFormPage.typeFirstName("Test");
+        signupFormPage.typeLastNameField("Test");
+        signupFormPage.typeAddress1("Tel-Aviv");
+        signupFormPage.typeAddress2("Haifa");
+        signupFormPage.selectCountry("Israel");
+        signupFormPage.typeState("Israel");
+        signupFormPage.typeCity("Tel-Aviv");
+        signupFormPage.typeZipCode("000000");
+        signupFormPage.typeMobileNumber("000000");
+        signupFormPage.clickCreateAccountButton();
         boolean successfulRegister = accountCreatedPage.validateSuccessMessage();
         accountCreatedPage.clickContinueButton();
         return successfulRegister;
@@ -51,6 +69,7 @@ public class Action {
 
         logger.info("Deleting account");
         homePage.clickDeleteAccount();
+        logger.info("Verifying account was deleted successfully");
         successMessage = accountDeletedPage.verifySuccessMessage();
         accountDeletedPage.clickContinueButton();
         return successMessage;
@@ -67,21 +86,28 @@ public class Action {
     }
 
     public boolean loginWithWrongCredentials() {
+        logger.info("Clicking Signup / Login button");
         homePage.clickSignupLoginButton();
-        boolean pageLoaded = signupLoginPage.verifyPageLoaded();
+        logger.info("Verifying login page loaded");
+        boolean pageLoaded = loginPage.verifyPageLoaded();
         if (!pageLoaded) {
             return false;
         }
-        signupLoginPage.filloutLogin("incorrectemail@incorrect.com", "incorrectPassword");
-        return signupLoginPage.verifyLoginErrorMessage();
+        logger.info("Filling out login info");
+        loginPage.typeExistingUserEmail("incorrectemail@incorrect.com");
+        loginPage.typeExistingUserPassword("incorrectPassword");
+        return loginPage.verifyLoginErrorMessage();
     }
 
     public boolean goToTestCasesPage() {
+        logger.info("Clicking Test Cases button");
         homePage.clickTestCasesButton();
+        logger.info("Verifying test cases page loaded");
         return testCasesPage.verifyPageLoaded();
     }
 
     public void addItemAndCheckout() {
+        logger.info("Add product to cart");
         homePage.clickAddCartButton();
         if (!homePage.verifyCheckoutMessageLoaded()) {
             return;
@@ -99,12 +125,15 @@ public class Action {
     }
 
     public boolean addReviewToProduct(String name, String email, String review) {
+        logger.info("Clicking product details");
         productsPage.clickViewProductButton();
+        logger.info("Adding review to product");
         productDetailsPage.addReview(name, email, review);
         return productDetailsPage.verifyReviewAdded();
     }
 
     public boolean goToProductsPage() {
+        logger.info("clicking on Products button");
         homePage.clickProductsButton();
         return productsPage.verifyPageLoaded();
     }
