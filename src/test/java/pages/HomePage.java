@@ -5,7 +5,7 @@ import org.openqa.selenium.WebDriver;
 
 public class HomePage extends BasePage {
 
-    private By automationExerciseLogo = By.cssSelector("img[alt='Website for automation practice']");
+    private By homeButton = By.cssSelector("a[href='/'][style='color: orange;']");
     private By signupLoginButton = By.cssSelector("a[href='/login']");
     private By testCasesButton = By.cssSelector("a[href='/test_cases']");
     private By deleteAccountButton = By.cssSelector("a[href='/delete_account']");
@@ -20,7 +20,7 @@ public class HomePage extends BasePage {
     }
 
     public boolean verifyPageLoaded() {
-        return validateElementExist(automationExerciseLogo);
+        return validateElementExist(homeButton);
     }
 
     public void clickSignupLoginButton() {

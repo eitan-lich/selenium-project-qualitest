@@ -96,6 +96,7 @@ public class Action {
         logger.info("Filling out login info");
         loginPage.typeExistingUserEmail("incorrectemail@incorrect.com");
         loginPage.typeExistingUserPassword("incorrectPassword");
+        loginPage.clickExistingUserLoginButton();
         return loginPage.verifyLoginErrorMessage();
     }
 

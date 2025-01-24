@@ -1,6 +1,8 @@
 {
   "url" : "https://automationexercise.com",
+  "apiUrl" : "https://automationexercise.com/api",
   "browserType" : "edge",
   "excelFilePath" : "testData.xlsx",
-  "excelSheet" : "Sheet1"
+  "excelSheet" : "Sheet1",
+  "headless" : "true"
 }

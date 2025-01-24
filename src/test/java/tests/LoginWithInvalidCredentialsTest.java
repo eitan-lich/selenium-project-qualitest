@@ -1,15 +1,18 @@
 package tests;
 
 import actions.Action;
+import io.qameta.allure.Allure;
 import io.qameta.allure.Description;
+import org.apache.commons.io.FileUtils;
 import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
-import org.testng.annotations.AfterSuite;
-import org.testng.annotations.BeforeMethod;
-import org.testng.annotations.BeforeSuite;
-import org.testng.annotations.Test;
+import org.testng.annotations.*;
 import utils.GenerateDriver;
 import utils.JsonUtils;
+import utils.ScreenshotUtils;
+
+import java.io.File;
+import java.io.IOException;
 
 public class LoginWithInvalidCredentialsTest {
     WebDriver driver;
@@ -35,6 +38,12 @@ public class LoginWithInvalidCredentialsTest {
         Assert.assertTrue(actions.loginWithWrongCredentials(), "Incorrect login did not fail as expected");
     }
 
+    @AfterMethod()
+    public void captureScreenshot() throws IOException {
+        String testName = this.getClass().getName();
+        File screenshot = ScreenshotUtils.captureScreenshot(driver, testName);
+        Allure.addAttachment("Test screenshot", FileUtils.openInputStream(screenshot));
+    }
 
     @AfterSuite
     public void tearDown() {
