@@ -18,7 +18,6 @@ public class UserRegistrationTest {
     WebDriver driver;
     Action actions;
 
-
     @BeforeSuite(alwaysRun = true)
     public void setUp() {
         String browserType = JsonUtils.readJsonFromFile("browserType");
@@ -27,18 +26,33 @@ public class UserRegistrationTest {
         actions = new Action(driver);
     }
 
-
     @BeforeMethod
     public void navigateToDefaultPage() {
         GenerateDriver.navigateToDefaultPage(driver);
     }
 
-    @Description("Tests login with valid credentials")
+    @Description("Verify home page loaded successfully")
     @Test(groups = {"Regression", "RegisterUser"})
-    public void testUserCanRegister() {
+    public void verifyHomePageLoaded() {
         Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
+
+    }
+
+    @Description("Register a new user")
+    @Test(groups = {"Regression", "RegisterUser"})
+    public void testUserRegistration() {
         Assert.assertTrue(actions.register(), "Did not manage to register successfully");
+    }
+
+    @Description("Verifies the user appears as logged after registering")
+    @Test(groups = {"Regression", "RegisterUser"})
+    public void testUserAppearsLoggedIn() {
         Assert.assertNotNull(actions.getLoggedInUser(), "User doesn't not display as logged in");
+    }
+
+    @Description("Deletes the users account")
+    @Test(groups = {"Regression", "RegisterUser"})
+    public void testAccountDeletion() {
         Assert.assertTrue(actions.deleteAccount(), "Did not manage to delete account");
     }
 
@@ -46,7 +60,7 @@ public class UserRegistrationTest {
     public void captureScreenshot() throws IOException {
         String testName = this.getClass().getName();
         File screenshot = ScreenshotUtils.captureScreenshot(driver, testName);
-        Allure.addAttachment("Test screenshot", FileUtils.openInputStream(screenshot));
+        Allure.addAttachment("Screenshot of test: " + testName, FileUtils.openInputStream(screenshot));
     }
 
     @AfterSuite
