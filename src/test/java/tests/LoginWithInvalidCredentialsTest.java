@@ -31,10 +31,15 @@ public class LoginWithInvalidCredentialsTest {
         GenerateDriver.navigateToDefaultPage(driver);
     }
 
-    @Description("Tests login with valid credentials")
-    @Test(groups = {"Regression", "LoginUser"})
-    public void testLoginWithIncorrectEmailAndPassword() {
+    @Description("Verify the home page loaded successfully")
+    @Test(groups = {"Regression", "LoginUser"}, priority = 1)
+    public void verifyHomePageLoaded() {
         Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
+    }
+
+    @Description("Test logging in with invalid credentials")
+    @Test(groups = {"Regression", "LoginUser"}, priority = 2)
+    public void testLoginWithIncorrectEmailAndPassword() {
         Assert.assertTrue(actions.loginWithWrongCredentials(), "Incorrect login did not fail as expected");
     }
 

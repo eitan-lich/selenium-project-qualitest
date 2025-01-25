@@ -32,26 +32,26 @@ public class UserRegistrationTest {
     }
 
     @Description("Verify home page loaded successfully")
-    @Test(groups = {"Regression", "RegisterUser"})
+    @Test(groups = {"Regression", "RegisterUser"}, priority = 1)
     public void verifyHomePageLoaded() {
         Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
 
     }
 
     @Description("Register a new user")
-    @Test(groups = {"Regression", "RegisterUser"})
+    @Test(groups = {"Regression", "RegisterUser"}, priority = 2)
     public void testUserRegistration() {
         Assert.assertTrue(actions.register(), "Did not manage to register successfully");
     }
 
-    @Description("Verifies the user appears as logged after registering")
-    @Test(groups = {"Regression", "RegisterUser"})
+    @Description("Verify the user appears as logged after registering")
+    @Test(groups = {"Regression", "RegisterUser"}, priority = 3)
     public void testUserAppearsLoggedIn() {
         Assert.assertNotNull(actions.getLoggedInUser(), "User doesn't not display as logged in");
     }
 
     @Description("Deletes the users account")
-    @Test(groups = {"Regression", "RegisterUser"})
+    @Test(groups = {"Regression", "RegisterUser"}, priority = 4)
     public void testAccountDeletion() {
         Assert.assertTrue(actions.deleteAccount(), "Did not manage to delete account");
     }

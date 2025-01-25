@@ -31,12 +31,22 @@ public class UserRegistrationFromCheckoutTest {
         GenerateDriver.navigateToDefaultPage(driver);
     }
 
-    @Description("Tests login with valid credentials")
-    @Test(groups = {"Regression", "RegisterUser"})
-    public void testRegisterFromCheckoutPage() {
+    @Description("Verify the home page loaded successfully")
+    @Test(groups = {"Regression", "RegisterUser"}, priority = 1)
+    public void verifyHomePageLoaded() {
         Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
+    }
+
+    @Description("Register from the cart page")
+    @Test(groups = {"Regression", "RegisterUser"}, priority = 2)
+    public void testRegisterFromCartPage() {
         actions.addItemAndCheckout();
         Assert.assertTrue(actions.registerFromCartPage(), "Did not manage to register successfully");
+    }
+
+    @Description("Verify the user appears as logged in")
+    @Test(groups = {"Regression", "RegisterUser"}, priority = 3)
+    public void testRegisterFromCheckoutPage() {
         Assert.assertNotNull(actions.getLoggedInUser(), "User doesn't not display as logged in");
         actions.deleteAccount();
     }

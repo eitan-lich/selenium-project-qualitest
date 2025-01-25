@@ -58,7 +58,9 @@ public class Action {
         signupFormPage.typeCity("Tel-Aviv");
         signupFormPage.typeZipCode("000000");
         signupFormPage.typeMobileNumber("000000");
+        logger.info("Clicking create account button");
         signupFormPage.clickCreateAccountButton();
+        logger.info("Verifying success message was displayed");
         boolean successfulRegister = accountCreatedPage.validateSuccessMessage();
         accountCreatedPage.clickContinueButton();
         return successfulRegister;
@@ -96,6 +98,7 @@ public class Action {
         logger.info("Filling out login info");
         loginPage.typeExistingUserEmail("incorrectemail@incorrect.com");
         loginPage.typeExistingUserPassword("incorrectPassword");
+        logger.info("Clicking login button");
         loginPage.clickExistingUserLoginButton();
         return loginPage.verifyLoginErrorMessage();
     }
@@ -108,7 +111,7 @@ public class Action {
     }
 
     public void addItemAndCheckout() {
-        logger.info("Add product to cart");
+        logger.info("Adding product to cart");
         homePage.clickAddCartButton();
         if (!homePage.verifyCheckoutMessageLoaded()) {
             return;
@@ -117,10 +120,12 @@ public class Action {
         if (!cartPage.verifyCheckoutPageLoaded()) {
             return;
         }
+        logger.info("Clicking proceed to checkout button");
         cartPage.clickProceedToCheckoutButton();
     }
 
     public boolean registerFromCartPage() {
+        logger.info("Clicking Register/Login button from checkout");
         cartPage.clickRegisterLoginButton();
         return register();
     }
@@ -130,12 +135,14 @@ public class Action {
         productsPage.clickViewProductButton();
         logger.info("Adding review to product");
         productDetailsPage.addReview(name, email, review);
+        logger.info("Verifying review was added successfully");
         return productDetailsPage.verifyReviewAdded();
     }
 
     public boolean goToProductsPage() {
         logger.info("clicking on Products button");
         homePage.clickProductsButton();
+        logger.info("Verifying Products page loaded successfully");
         return productsPage.verifyPageLoaded();
     }
 }

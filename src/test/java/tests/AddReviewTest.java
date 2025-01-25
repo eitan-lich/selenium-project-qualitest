@@ -41,10 +41,15 @@ public class AddReviewTest {
         GenerateDriver.navigateToDefaultPage(driver);
     }
 
-    @Description("Tests login with valid credentials")
-    @Test(groups = {"Regression", "ProductTests"}, dataProvider = "excelData")
-    public void testAddingReviewToProduct(String name, String email, String review) {
+    @Description("Verify the Products page load successfully")
+    @Test(groups = {"Regression, ProductTests"}, priority = 1)
+    public void testProductsPage() {
         Assert.assertTrue(actions.goToProductsPage(), "All products page did not load successfully");
+    }
+
+    @Description("Add a review to a product")
+    @Test(groups = {"Regression", "ProductTests"}, dataProvider = "excelData", priority = 2)
+    public void testAddingReviewToProduct(String name, String email, String review) {
         Assert.assertTrue(actions.addReviewToProduct(name, email, review), "Error to add review");
     }
 

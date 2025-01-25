@@ -32,15 +32,15 @@ public class TestCasesPageTest {
         GenerateDriver.navigateToDefaultPage(driver);
     }
 
-    @Description("Verify home page loaded successfully")
-    @Test(groups = {"Regression", "PagesValidation"})
+    @Description("Verify the home page loaded successfully")
+    @Test(groups = {"Regression", "PagesValidation"}, priority = 1)
     public void verifyHomePageLoaded() {
         Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
 
     }
 
-    @Description("Verify test cases page loads successfully")
-    @Test(groups = {"Regression", "PagesValidation"})
+    @Description("Verify the test cases page loaded successfully")
+    @Test(groups = {"Regression", "PagesValidation"}, priority = 2)
     public void verifyTestCasesPage() {
         Assert.assertTrue(actions.goToTestCasesPage(), "Test cases page did not load successfully");
     }
