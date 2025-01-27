@@ -36,11 +36,6 @@ public class AddReviewTest {
         actions = new Action(driver);
     }
 
-    @BeforeMethod
-    public void navigateToDefaultPage() {
-        GenerateDriver.navigateToDefaultPage(driver);
-    }
-
     @Description("Verify the Products page load successfully")
     @Test(groups = {"Regression, ProductTests"}, priority = 1)
     public void testProductsPage() {
@@ -64,5 +59,5 @@ public class AddReviewTest {
     public void tearDown() {
         driver.quit();
     }
-}
 
+}

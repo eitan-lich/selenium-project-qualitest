@@ -17,7 +17,7 @@ public class ProductsPage extends BasePage {
     }
 
     public void clickViewProductButton() {
-        scrollDown(200);
+        scrollDown(400);
         click(ViewProduct);
     }
 }

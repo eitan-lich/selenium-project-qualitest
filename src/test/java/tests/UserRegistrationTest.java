@@ -26,11 +26,6 @@ public class UserRegistrationTest {
         actions = new Action(driver);
     }
 
-    @BeforeMethod
-    public void navigateToDefaultPage() {
-        GenerateDriver.navigateToDefaultPage(driver);
-    }
-
     @Description("Verify home page loaded successfully")
     @Test(groups = {"Regression", "RegisterUser"}, priority = 1)
     public void verifyHomePageLoaded() {

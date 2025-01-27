@@ -27,11 +27,6 @@ public class TestCasesPageTest {
         actions = new Action(driver);
     }
 
-    @BeforeMethod
-    public void navigateToDefaultPage() {
-        GenerateDriver.navigateToDefaultPage(driver);
-    }
-
     @Description("Verify the home page loaded successfully")
     @Test(groups = {"Regression", "PagesValidation"}, priority = 1)
     public void verifyHomePageLoaded() {

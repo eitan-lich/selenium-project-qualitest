@@ -49,9 +49,4 @@ public class GenerateDriver {
 
         return driver;
     }
-
-    public static void navigateToDefaultPage(WebDriver driver) {
-        String url = JsonUtils.readJsonFromFile("url");
-        driver.get(url);
-    }
 }
