@@ -20,11 +20,24 @@ Todo
 
 public class ApiTests {
 
+    /**
+     * Sets up the base URI for RestAssured before running any tests.
+     * The base URI is fetched from a JSON configuration file.
+     */
     @BeforeSuite
     public void setUp() {
         RestAssured.baseURI = JsonUtils.readJsonFromFile("apiUrl");
     }
 
+    /**
+     * Test to verify the '/productsList' API endpoint.
+     * <p>
+     * Steps performed:
+     * 1. Sends a GET request to '/productsList'.
+     * 2. Extracts the response and parses it as JSON.
+     * 3. Asserts the response code is 200.
+     * 4. Verifies the 'products' list in the response is not empty.
+     */
     @Test
     public void testGetAllProductsList() {
         Response response = RestAssured.given()

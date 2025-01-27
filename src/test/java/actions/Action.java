@@ -18,6 +18,11 @@ public class Action {
     ProductsPage productsPage;
     TestCasesPage testCasesPage;
 
+    /**
+     * Constructor for the Action class.
+     *
+     * @param driver the WebDriver instance used to initialize page objects for web interactions.
+     */
     public Action(WebDriver driver) {
         homePage = new HomePage(driver);
         loginPage = new LoginPage(driver);
@@ -30,6 +35,11 @@ public class Action {
         testCasesPage = new TestCasesPage(driver);
     }
 
+    /**
+     * Registers a new user by filling out the signup form and verifying the account creation.
+     *
+     * @return true if the account has been created successfully, false otherwise.
+     */
     public boolean register() {
         logger.info("Clicking Signup / Login button");
         homePage.clickSignupLoginButton();
@@ -66,6 +76,11 @@ public class Action {
         return successfulRegister;
     }
 
+    /**
+     * Deletes the user account and verifies that it was successfully deleted.
+     *
+     * @return true if the account deletion was successful, false otherwise.
+     */
     public boolean deleteAccount() {
         boolean successMessage = false;
 
@@ -77,16 +92,31 @@ public class Action {
         return successMessage;
     }
 
+    /**
+     * Retrieves the username of the currently logged-in user as displayed on the homepage.
+     *
+     * @return a String representing the currently logged-in user, or null if no user is logged in.
+     */
     public String getLoggedInUser() {
         logger.info("Verifying new registered user appears as logged in");
         return homePage.getLoggedInUser();
     }
 
+    /**
+     * Verifies that the homepage is loaded correctly by interacting with meaningful page elements.
+     *
+     * @return true if the homepage is loaded successfully, false otherwise.
+     */
     public boolean verifyHomePageLoaded() {
         logger.info("Verifying homepage loaded successfully");
         return homePage.verifyPageLoaded();
     }
 
+    /**
+     * Attempts to log in with incorrect credentials and verifies whether the login error message is displayed.
+     *
+     * @return true if the error message is displayed after a failed login attempt, false otherwise.
+     */
     public boolean loginWithWrongCredentials() {
         logger.info("Clicking Signup / Login button");
         homePage.clickSignupLoginButton();
@@ -103,6 +133,11 @@ public class Action {
         return loginPage.verifyLoginErrorMessage();
     }
 
+    /**
+     * Navigates to the Test Cases page by interacting with the necessary homepage elements.
+     *
+     * @return true if the Test Cases page is loaded successfully, false otherwise.
+     */
     public boolean goToTestCasesPage() {
         logger.info("Clicking Test Cases button");
         homePage.clickTestCasesButton();
@@ -110,6 +145,10 @@ public class Action {
         return testCasesPage.verifyPageLoaded();
     }
 
+    /**
+     * Adds an item to the cart, verifies it, and proceeds to the checkout page.
+     * Does nothing if any step in the process, such as verification, fails.
+     */
     public void addItemAndCheckout() {
         logger.info("Adding product to cart");
         homePage.clickAddCartButton();
@@ -124,12 +163,25 @@ public class Action {
         cartPage.clickProceedToCheckoutButton();
     }
 
+    /**
+     * Registers a new user from the cart page during the checkout process.
+     *
+     * @return true if the registration from the cart page was successful, false otherwise.
+     */
     public boolean registerFromCartPage() {
         logger.info("Clicking Register/Login button from checkout");
         cartPage.clickRegisterLoginButton();
         return register();
     }
 
+    /**
+     * Adds a review to a specific product by supplying the name, email, and review content.
+     *
+     * @param name   the name of the person submitting the review.
+     * @param email  the email address of the reviewer.
+     * @param review the content of the review to be added.
+     * @return true if the review was added successfully, false otherwise.
+     */
     public boolean addReviewToProduct(String name, String email, String review) {
         logger.info("Clicking product details");
         productsPage.clickViewProductButton();
@@ -139,6 +191,11 @@ public class Action {
         return productDetailsPage.verifyReviewAdded();
     }
 
+    /**
+     * Navigates to the Products page by interacting with the necessary homepage elements.
+     *
+     * @return true if the Products page is loaded successfully, false otherwise.
+     */
     public boolean goToProductsPage() {
         logger.info("clicking on Products button");
         homePage.clickProductsButton();

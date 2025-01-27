@@ -26,11 +26,13 @@ public class UserRegistrationFromCheckoutTest {
         actions = new Action(driver);
     }
 
+
     @Description("Verify the home page loaded successfully")
     @Test(groups = {"Regression", "RegisterUser"}, priority = 1)
     public void verifyHomePageLoaded() {
         Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
     }
+
 
     @Description("Register from the cart page")
     @Test(groups = {"Regression", "RegisterUser"}, priority = 2)
@@ -46,12 +48,14 @@ public class UserRegistrationFromCheckoutTest {
         actions.deleteAccount();
     }
 
+
     @AfterMethod()
     public void captureScreenshot() throws IOException {
         String testName = this.getClass().getName();
         File screenshot = ScreenshotUtils.captureScreenshot(driver, testName);
         Allure.addAttachment("Test screenshot", FileUtils.openInputStream(screenshot));
     }
+
 
     @AfterSuite
     public void tearDown() {

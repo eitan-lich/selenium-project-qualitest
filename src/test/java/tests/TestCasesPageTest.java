@@ -19,6 +19,7 @@ public class TestCasesPageTest {
     WebDriver driver;
     Action actions;
 
+
     @BeforeSuite(alwaysRun = true)
     public void setUp() {
         String browserType = JsonUtils.readJsonFromFile("browserType");
@@ -27,6 +28,10 @@ public class TestCasesPageTest {
         actions = new Action(driver);
     }
 
+    /**
+     * Verifies that the home page of the application loads successfully by checking
+     * if the required elements are present and visible on the page.
+     */
     @Description("Verify the home page loaded successfully")
     @Test(groups = {"Regression", "PagesValidation"}, priority = 1)
     public void verifyHomePageLoaded() {
@@ -34,11 +39,16 @@ public class TestCasesPageTest {
 
     }
 
+    /**
+     * Navigates to the test cases page and verifies that it loads successfully.
+     * Confirms that the necessary elements of the page are displayed as expected.
+     */
     @Description("Verify the test cases page loaded successfully")
     @Test(groups = {"Regression", "PagesValidation"}, priority = 2)
     public void verifyTestCasesPage() {
         Assert.assertTrue(actions.goToTestCasesPage(), "Test cases page did not load successfully");
     }
+
 
     @AfterMethod()
     public void captureScreenshot() throws IOException {

@@ -18,6 +18,7 @@ public class UserRegistrationTest {
     WebDriver driver;
     Action actions;
 
+
     @BeforeSuite(alwaysRun = true)
     public void setUp() {
         String browserType = JsonUtils.readJsonFromFile("browserType");
@@ -26,6 +27,9 @@ public class UserRegistrationTest {
         actions = new Action(driver);
     }
 
+    /**
+     * Verifies if the home page is loaded successfully.
+     */
     @Description("Verify home page loaded successfully")
     @Test(groups = {"Regression", "RegisterUser"}, priority = 1)
     public void verifyHomePageLoaded() {
@@ -33,18 +37,27 @@ public class UserRegistrationTest {
 
     }
 
+    /**
+     * Registers a new user and ensures the registration is successful.
+     */
     @Description("Register a new user")
     @Test(groups = {"Regression", "RegisterUser"}, priority = 2)
     public void testUserRegistration() {
         Assert.assertTrue(actions.register(), "Did not manage to register successfully");
     }
 
+    /**
+     * Verifies that the user appears as logged in after successful registration.
+     */
     @Description("Verify the user appears as logged after registering")
     @Test(groups = {"Regression", "RegisterUser"}, priority = 3)
     public void testUserAppearsLoggedIn() {
         Assert.assertNotNull(actions.getLoggedInUser(), "User doesn't not display as logged in");
     }
 
+    /**
+     * Deletes the user's account and verifies successful deletion.
+     */
     @Description("Deletes the users account")
     @Test(groups = {"Regression", "RegisterUser"}, priority = 4)
     public void testAccountDeletion() {
@@ -57,6 +70,7 @@ public class UserRegistrationTest {
         File screenshot = ScreenshotUtils.captureScreenshot(driver, testName);
         Allure.addAttachment("Screenshot of test: " + testName, FileUtils.openInputStream(screenshot));
     }
+
 
     @AfterSuite
     public void tearDown() {
