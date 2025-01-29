@@ -43,7 +43,7 @@ public class UserRegistrationFromCheckoutTest {
 
     @Description("Verify the user appears as logged in")
     @Test(groups = {"Regression", "RegisterUser"}, priority = 3)
-    public void testRegisterFromCheckoutPage() {
+    public void testUserAppearsLoggedIn() {
         Assert.assertNotNull(actions.getLoggedInUser(), "User doesn't not display as logged in");
     }
 
