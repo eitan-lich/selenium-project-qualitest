@@ -45,7 +45,6 @@ public class UserRegistrationFromCheckoutTest {
     @Test(groups = {"Regression", "RegisterUser"}, priority = 3)
     public void testRegisterFromCheckoutPage() {
         Assert.assertNotNull(actions.getLoggedInUser(), "User doesn't not display as logged in");
-        actions.deleteAccount();
     }
 
 
