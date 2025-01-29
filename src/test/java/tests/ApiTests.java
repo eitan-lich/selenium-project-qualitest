@@ -40,12 +40,7 @@ public class ApiTests {
      */
     @Test
     public void testGetAllProductsList() {
-        Response response = RestAssured.given()
-                .when()
-                .get("/productsList")
-                .then()
-                .extract()
-                .response();
+        Response response = RestAssured.given().when().get("/productsList").then().extract().response();
 
         JsonPath json = response.jsonPath();
         Assert.assertEquals(response.getStatusCode(), 200);

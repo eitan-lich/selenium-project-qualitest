@@ -27,6 +27,10 @@ public class UserRegistrationFromCheckoutTest {
     }
 
 
+    /**
+     * Test to verify that the home page loads successfully.
+     * Uses the Action class to validate whether the page is correctly displayed.
+     */
     @Description("Verify the home page loaded successfully")
     @Test(groups = {"Regression", "RegisterUser"}, priority = 1)
     public void verifyHomePageLoaded() {
@@ -34,6 +38,10 @@ public class UserRegistrationFromCheckoutTest {
     }
 
 
+    /**
+     * Test to validate the user registration process from the cart page during checkout.
+     * Adds an item to the cart, proceeds to checkout, and attempts to register a new account.
+     */
     @Description("Register from the cart page")
     @Test(groups = {"Regression", "RegisterUser"}, priority = 2)
     public void testRegisterFromCartPage() {
@@ -41,6 +49,10 @@ public class UserRegistrationFromCheckoutTest {
         Assert.assertTrue(actions.registerFromCartPage(), "Did not manage to register successfully");
     }
 
+    /**
+     * Test to verify that the user appears as logged in after successful registration.
+     * Checks the Action class for the presence of a logged-in user.
+     */
     @Description("Verify the user appears as logged in")
     @Test(groups = {"Regression", "RegisterUser"}, priority = 3)
     public void testUserAppearsLoggedIn() {
@@ -54,7 +66,6 @@ public class UserRegistrationFromCheckoutTest {
         File screenshot = ScreenshotUtils.captureScreenshot(driver, testName);
         Allure.addAttachment("Test screenshot", FileUtils.openInputStream(screenshot));
     }
-
 
     @AfterSuite
     public void tearDown() {
