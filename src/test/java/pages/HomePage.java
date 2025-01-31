@@ -12,8 +12,9 @@ public class HomePage extends BasePage {
     private By loggedInAs = By.cssSelector("i.fa-user ~ b");
     private By AddToCartButton = By.xpath("(//a[text()='Add to cart'])[1]");
     private By CheckoutMessage = By.xpath("//p[text()='Your product has been added to cart.']");
-    private By ViewCart = By.xpath("//u[text()='View Cart']");
+    private By viewCartPopup = By.xpath("//u[text()='View Cart']");
     private By productsButton = By.cssSelector("a[href='/products']");
+    private By cartButton = By.cssSelector("a[href='/view_cart']");
 
     public HomePage(WebDriver driver) {
         super(driver);
@@ -39,16 +40,20 @@ public class HomePage extends BasePage {
         click(deleteAccountButton);
     }
 
-    public void clickAddCartButton() {
+    public void addFirstItemToCart() {
         click(AddToCartButton);
     }
 
-    public boolean verifyCheckoutMessageLoaded() {
+    public boolean verifyProductAddedSuccessfully() {
         return validateElementExist(CheckoutMessage);
     }
 
-    public void clickViewCartButton() {
-        click(ViewCart);
+    public void clickViewCartPopup() {
+        click(viewCartPopup);
+    }
+
+    public void clickCartButton() {
+        click(cartButton);
     }
 
     public void clickProductsButton() {

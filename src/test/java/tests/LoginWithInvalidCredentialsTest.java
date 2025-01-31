@@ -31,7 +31,7 @@ public class LoginWithInvalidCredentialsTest {
      * Validates the expected condition using assertions.
      */
     @Description("Verify the home page loaded successfully")
-    @Test(groups = {"Regression", "LoginUser"}, priority = 1)
+    @Test(groups = {"Regression", "Login"}, priority = 1)
     public void verifyHomePageLoaded() {
         Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
     }
@@ -42,18 +42,11 @@ public class LoginWithInvalidCredentialsTest {
      * handles incorrect login attempts properly.
      */
     @Description("Test logging in with invalid credentials")
-    @Test(groups = {"Regression", "LoginUser"}, priority = 2)
+    @Test(groups = {"Regression", "Login"}, priority = 2)
     public void testLoginWithIncorrectEmailAndPassword() {
         Assert.assertTrue(actions.loginWithWrongCredentials(), "Incorrect login did not fail as expected");
     }
 
-    /**
-     * Captures a screenshot after each test method execution.
-     * The screenshot is attached to the Allure report for debugging
-     * purposes. Uses the test name for file identification.
-     *
-     * @throws IOException If there is an issue saving the screenshot.
-     */
     @AfterMethod()
     public void captureScreenshot() throws IOException {
         String testName = this.getClass().getName();

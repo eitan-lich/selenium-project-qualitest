@@ -12,7 +12,7 @@ public class CartPage extends BasePage {
         super(driver);
     }
 
-    public boolean verifyCheckoutPageLoaded() {
+    public boolean verifyPageLoaded() {
         return validateElementExist(ProceedToCheckout);
     }
 

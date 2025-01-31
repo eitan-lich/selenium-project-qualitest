@@ -40,4 +40,9 @@ public class BasePage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,arguments[0]);", scrollAmount);
     }
+
+    public void preventPageRedirect() {
+        JavascriptExecutor js = (JavascriptExecutor) driver;
+        js.executeScript("window.onbeforeunload = function(event) { " + "event.preventDefault(); " + "event.returnValue = ''; " + "setTimeout(function() { window.onbeforeunload = null; }, 5000); " + "return 'Are you sure you want to leave?'; " + "};");
+    }
 }

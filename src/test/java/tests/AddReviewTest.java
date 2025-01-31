@@ -56,7 +56,7 @@ public class AddReviewTest {
 
     /**
      * Tests adding a review to a product using provided test data.
-     * Uses a data provider to supply user name, email, and review content.
+     * Uses a data provider to supply username, email, and review content.
      *
      * @param name   The name of the user submitting the review.
      * @param email  The email of the user submitting the review.

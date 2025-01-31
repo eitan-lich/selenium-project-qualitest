@@ -17,6 +17,8 @@ public class Action {
     ProductDetailsPage productDetailsPage;
     ProductsPage productsPage;
     TestCasesPage testCasesPage;
+    CheckoutPage checkoutPage;
+    PaymentPage paymentPage;
 
     /**
      * Constructor for the Action class.
@@ -33,6 +35,8 @@ public class Action {
         productDetailsPage = new ProductDetailsPage(driver);
         productsPage = new ProductsPage(driver);
         testCasesPage = new TestCasesPage(driver);
+        checkoutPage = new CheckoutPage(driver);
+        paymentPage = new PaymentPage(driver);
     }
 
     /**
@@ -149,18 +153,19 @@ public class Action {
      * Adds an item to the cart, verifies it, and proceeds to the checkout page.
      * Does nothing if any step in the process, such as verification, fails.
      */
-    public void addItemAndCheckout() {
+    public boolean addItemAndCheckout() {
         logger.info("Adding product to cart");
-        homePage.clickAddCartButton();
-        if (!homePage.verifyCheckoutMessageLoaded()) {
-            return;
+        homePage.addFirstItemToCart();
+        if (!homePage.verifyProductAddedSuccessfully()) {
+            return false;
         }
-        homePage.clickViewCartButton();
-        if (!cartPage.verifyCheckoutPageLoaded()) {
-            return;
+        homePage.clickViewCartPopup();
+        if (!cartPage.verifyPageLoaded()) {
+            return false;
         }
         logger.info("Clicking proceed to checkout button");
         cartPage.clickProceedToCheckoutButton();
+        return true;
     }
 
     /**
@@ -169,9 +174,34 @@ public class Action {
      * @return true if the registration from the cart page was successful, false otherwise.
      */
     public boolean registerFromCartPage() {
-        logger.info("Clicking Register/Login button from checkout");
+        logger.info("Clicking Register/Login button from cart page");
         cartPage.clickRegisterLoginButton();
         return register();
+    }
+
+    public boolean placeOrder() {
+        logger.info("Clicking cart button");
+        homePage.clickCartButton();
+        logger.info("Clicking proceed to checkout button");
+        cartPage.clickProceedToCheckoutButton();
+        logger.info("Verifying order details are correct");
+        if (checkoutPage.getOrderDetails().isEmpty()) {
+            return false;
+        }
+        logger.info("Adding comment to order");
+        checkoutPage.addComment("Please make sure the package is well packed");
+        logger.info("Clicking place order button");
+        checkoutPage.clickPlaceOrderButton();
+        logger.info("Filling out payment details");
+        paymentPage.fillNameOnCard("Test");
+        paymentPage.fillCardNumber("0000000000");
+        paymentPage.fillCvc("333");
+        paymentPage.fillExpiryMonth("12");
+        paymentPage.fillExpiryYear("29");
+        logger.info("Clicking pay and confirm button");
+        paymentPage.clickPayAndConfirmButton();
+        logger.info("Verifying order was successful");
+        return paymentPage.verifyOrderSuccess();
     }
 
     /**

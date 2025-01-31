@@ -14,7 +14,7 @@ import utils.ScreenshotUtils;
 import java.io.File;
 import java.io.IOException;
 
-public class UserRegistrationFromCheckoutTest {
+public class PlaceOrderAfterRegister {
     WebDriver driver;
     Action actions;
 
@@ -32,7 +32,7 @@ public class UserRegistrationFromCheckoutTest {
      * Uses the Action class to validate whether the page is correctly displayed.
      */
     @Description("Verify the home page loaded successfully")
-    @Test(groups = {"Regression", "RegisterUser"}, priority = 1)
+    @Test(groups = {"Regression", "Register"}, priority = 1)
     public void verifyHomePageLoaded() {
         Assert.assertTrue(actions.verifyHomePageLoaded(), "Home page did not load successfully");
     }
@@ -43,9 +43,9 @@ public class UserRegistrationFromCheckoutTest {
      * Adds an item to the cart, proceeds to checkout, and attempts to register a new account.
      */
     @Description("Register from the cart page")
-    @Test(groups = {"Regression", "RegisterUser"}, priority = 2)
+    @Test(groups = {"Regression", "Register"}, priority = 2)
     public void testRegisterFromCartPage() {
-        actions.addItemAndCheckout();
+        Assert.assertTrue(actions.addItemAndCheckout(), "Failed to add item to cart or visit cart page");
         Assert.assertTrue(actions.registerFromCartPage(), "Did not manage to register successfully");
     }
 
@@ -54,11 +54,29 @@ public class UserRegistrationFromCheckoutTest {
      * Checks the Action class for the presence of a logged-in user.
      */
     @Description("Verify the user appears as logged in")
-    @Test(groups = {"Regression", "RegisterUser"}, priority = 3)
+    @Test(groups = {"Regression", "Register"}, priority = 3)
     public void testUserAppearsLoggedIn() {
         Assert.assertNotNull(actions.getLoggedInUser(), "User doesn't not display as logged in");
     }
 
+    /**
+     * Test to verify that the user appears as logged in after successful registration.
+     * Checks the Action class for the presence of a logged-in user.
+     */
+    @Description("Verify the user appears as logged in")
+    @Test(groups = {"Regression", "Register"}, priority = 3)
+    public void testPlaceOrder() {
+        Assert.assertTrue(actions.placeOrder(), "Failed to place order");
+    }
+
+    /**
+     * Deletes the user's account and verifies successful deletion.
+     */
+    @Description("Deletes the users account")
+    @Test(groups = {"Regression", "Register"}, priority = 4)
+    public void testAccountDeletion() {
+        Assert.assertTrue(actions.deleteAccount(), "Did not manage to delete account");
+    }
 
     @AfterMethod()
     public void captureScreenshot() throws IOException {
