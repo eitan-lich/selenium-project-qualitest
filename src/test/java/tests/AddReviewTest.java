@@ -62,7 +62,7 @@ public class AddReviewTest {
     }
 
 
-    @AfterMethod()
+    @AfterMethod(alwaysRun = true)
     public void captureScreenshot() throws IOException {
         String testName = this.getClass().getName();
         File screenshot = ScreenshotUtils.captureScreenshot(driver, testName);

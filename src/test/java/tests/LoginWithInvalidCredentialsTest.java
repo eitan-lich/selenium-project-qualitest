@@ -47,7 +47,7 @@ public class LoginWithInvalidCredentialsTest {
         Assert.assertTrue(actions.loginWithWrongCredentials(), "Incorrect login did not fail as expected");
     }
 
-    @AfterMethod()
+    @AfterMethod(alwaysRun = true)
     public void captureScreenshot() throws IOException {
         String testName = this.getClass().getName();
         File screenshot = ScreenshotUtils.captureScreenshot(driver, testName);

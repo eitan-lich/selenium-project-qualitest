@@ -64,7 +64,7 @@ public class UserRegistrationTest {
         Assert.assertTrue(actions.deleteAccount(), "Did not manage to delete account");
     }
 
-    @AfterMethod()
+    @AfterMethod(alwaysRun = true)
     public void captureScreenshot() throws IOException {
         String testName = this.getClass().getName();
         File screenshot = ScreenshotUtils.captureScreenshot(driver, testName);
