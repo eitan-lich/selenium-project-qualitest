@@ -72,7 +72,7 @@ public class UserRegistrationTest {
     }
 
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }

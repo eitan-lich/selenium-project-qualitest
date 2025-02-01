@@ -54,7 +54,7 @@ public class LoginWithInvalidCredentialsTest {
         Allure.addAttachment("Test screenshot", FileUtils.openInputStream(screenshot));
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }

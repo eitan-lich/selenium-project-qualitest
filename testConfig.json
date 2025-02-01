@@ -4,5 +4,5 @@
   "browserType" : "edge",
   "excelFilePath" : "testData.xlsx",
   "excelSheet" : "Sheet1",
-  "headless" : "false"
+  "headless" : "true"
 }

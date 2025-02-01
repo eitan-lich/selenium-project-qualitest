@@ -12,7 +12,7 @@ public class PaymentPage extends BasePage {
     private By expiryMonth = By.cssSelector("input[data-qa='expiry-month']");
     private By expiryYear = By.cssSelector("input[data-qa='expiry-year']");
     private By payAndConfirmButton = By.cssSelector("button[data-qa='pay-button']");
-    private By orderPlacedSuccesfully = By.id("success_message");
+    private By orderPlacedSuccesfully = By.xpath("//p[text()='Congratulations! Your order has been confirmed!']");
 
 
     public PaymentPage(WebDriver driver) {
@@ -30,6 +30,7 @@ public class PaymentPage extends BasePage {
     public void fillCvc(String text) {
         typeText(cvc, text);
     }
+
     public void fillExpiryMonth(String text) {
         typeText(expiryMonth, text);
     }
@@ -39,7 +40,6 @@ public class PaymentPage extends BasePage {
     }
 
     public void clickPayAndConfirmButton() {
-        preventPageRedirect();
         click(payAndConfirmButton);
     }
 

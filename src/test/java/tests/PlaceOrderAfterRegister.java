@@ -60,11 +60,11 @@ public class PlaceOrderAfterRegister {
     }
 
     /**
-     * Test to verify that the user appears as logged in after successful registration.
-     * Checks the Action class for the presence of a logged-in user.
+     * Verifies the ability to place an order.
+     * Ensures that the checkout and order placement processes are functioning correctly.
      */
-    @Description("Verify the user appears as logged in")
-    @Test(groups = {"Regression", "Register"}, priority = 3)
+    @Description("Places an order")
+    @Test(groups = {"Regression", "Register"}, priority = 4)
     public void testPlaceOrder() {
         Assert.assertTrue(actions.placeOrder(), "Failed to place order");
     }
@@ -73,7 +73,7 @@ public class PlaceOrderAfterRegister {
      * Deletes the user's account and verifies successful deletion.
      */
     @Description("Deletes the users account")
-    @Test(groups = {"Regression", "Register"}, priority = 4)
+    @Test(groups = {"Regression", "Register"}, priority = 5)
     public void testAccountDeletion() {
         Assert.assertTrue(actions.deleteAccount(), "Did not manage to delete account");
     }
@@ -85,7 +85,7 @@ public class PlaceOrderAfterRegister {
         Allure.addAttachment("Test screenshot", FileUtils.openInputStream(screenshot));
     }
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }

@@ -41,6 +41,7 @@ public class HomePage extends BasePage {
     }
 
     public void addFirstItemToCart() {
+        scrollDown(400);
         click(AddToCartButton);
     }
 

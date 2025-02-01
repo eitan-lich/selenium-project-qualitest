@@ -21,13 +21,6 @@ public class AddReviewTest {
     Action actions;
 
 
-    /**
-     * Provides test data for adding reviews to products.
-     * Reads data from an Excel file specified in the configuration.
-     *
-     * @return A two-dimensional array containing name, email, and review data.
-     * @throws IOException If there's an issue reading the Excel file.
-     */
     @DataProvider(name = "excelData")
     public Object[][] getData() throws IOException {
         String filePath = JsonUtils.readJsonFromFile("excelFilePath");
@@ -77,7 +70,7 @@ public class AddReviewTest {
     }
 
 
-    @AfterSuite
+    @AfterSuite(alwaysRun = true)
     public void tearDown() {
         driver.quit();
     }
