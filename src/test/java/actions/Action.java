@@ -213,12 +213,21 @@ public class Action {
      * @return true if the review was added successfully, false otherwise.
      */
     public boolean addReviewToProduct(String name, String email, String review) {
-        logger.info("Clicking product details");
-        productsPage.clickViewProductButton();
         logger.info("Adding review to product");
         productDetailsPage.addReview(name, email, review);
         logger.info("Verifying review was added successfully");
         return productDetailsPage.verifyReviewAdded();
+    }
+
+    /**
+     * Navigates to the Product details page by interacting with the necessary Products page elements.
+     *
+     * @return true if the Product details page is loaded successfully, false otherwise.
+     */
+    public boolean visitProductDetails() {
+        logger.info("Clicking product details");
+        productsPage.clickViewProductButton();
+        return productDetailsPage.verifyPageLoaded();
     }
 
     /**

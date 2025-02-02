@@ -1,22 +1,13 @@
 package tests;
 
-import io.restassured.RestAssured;
-import io.restassured.path.json.JsonPath;
 import io.restassured.response.Response;
-import org.testng.Assert;
 import org.testng.annotations.BeforeSuite;
 import org.testng.annotations.Test;
 import utils.JsonUtils;
-/*
-Todo
-1. Use Allure reports
-2. Add Java Docs
-3. Add logs
-4. Refactor tests so each class is a single test
-5. Refactor functions in Actions class and page classes (register function should exist in Action and page class should have only type field)
-6. Add RestAssured tests
-7. Add screenshots to tests
- */
+
+import static io.restassured.RestAssured.*;
+import static io.restassured.matcher.RestAssuredMatchers.*;
+import static org.hamcrest.Matchers.*;
 
 public class ApiTests {
 
@@ -26,7 +17,7 @@ public class ApiTests {
      */
     @BeforeSuite
     public void setUp() {
-        RestAssured.baseURI = JsonUtils.readJsonFromFile("apiUrl");
+        baseURI = JsonUtils.readJsonFromFile("apiUrl");
     }
 
     /**
@@ -34,17 +25,39 @@ public class ApiTests {
      * <p>
      * Steps performed:
      * 1. Sends a GET request to '/productsList'.
-     * 2. Extracts the response and parses it as JSON.
-     * 3. Asserts the response code is 200.
-     * 4. Verifies the 'products' list in the response is not empty.
+     * 2. Asserts the response code is 200.
+     * 3. Verifies 'Blue Top' is in the response.
      */
     @Test
     public void testGetAllProductsList() {
-        Response response = RestAssured.given().when().get("/productsList").then().extract().response();
+        given()
+                .when()
+                    .get("/productsList") // Replace with your actual endpoint
+                .then()
+                    .statusCode(200)
+                    .body(not(empty()))
+                    .body(containsString("\"name\": \"Blue Top\""));
+    }
 
-        JsonPath json = response.jsonPath();
-        Assert.assertEquals(response.getStatusCode(), 200);
-        Assert.assertFalse(json.getList("products").isEmpty());
+    /**
+     * Test to verify the '/verifyLogin' API endpoint.
+     * <p>
+     * Steps performed:
+     * 1. Sends a POST request to '/verifyLogin'.
+     * 2. Asserts the response code is 200.
+     * 3. Verifies 'User exists!' is in the response.
+     */
+    @Test
+    public void testValidLogin() {
+        given()
+                .contentType("multipart/form-data")
+                .multiPart("email", "testuser@tester.com")
+                .multiPart("password", "aa123456")
+        .when()
+                .post("/verifyLogin")
+        .then()
+                .statusCode(200)
+                .body(containsString("User exists!"));
     }
 }
 

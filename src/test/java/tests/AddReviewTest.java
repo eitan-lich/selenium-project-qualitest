@@ -48,6 +48,17 @@ public class AddReviewTest {
     }
 
     /**
+     * Verifies that the Product details page loads successfully in the browser.
+     * Asserts whether the Product details page is displayed as expected.
+     */
+    @Description("Verify the Product details page load successfully")
+    @Test(groups = {"Regression, ProductTests"}, priority = 2)
+    public void testProductsDetailsPage() {
+        Assert.assertTrue(actions.visitProductDetails(), "Products details page did not load successfully");
+    }
+
+
+    /**
      * Tests adding a review to a product using provided test data.
      * Uses a data provider to supply username, email, and review content.
      *
@@ -56,7 +67,7 @@ public class AddReviewTest {
      * @param review The content of the review.
      */
     @Description("Add a review to a product")
-    @Test(groups = {"Regression", "ProductTests"}, dataProvider = "excelData", priority = 2)
+    @Test(groups = {"Regression", "ProductTests"}, dataProvider = "excelData", priority = 3)
     public void testAddingReviewToProduct(String name, String email, String review) {
         Assert.assertTrue(actions.addReviewToProduct(name, email, review), "Error to add review");
     }

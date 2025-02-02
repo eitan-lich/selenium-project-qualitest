@@ -40,4 +40,8 @@ public class BasePage {
         JavascriptExecutor js = (JavascriptExecutor) driver;
         js.executeScript("window.scrollBy(0,arguments[0]);", scrollAmount);
     }
+
+    public void clearField(By locator) {
+        find(locator).clear();
+    }
 }
