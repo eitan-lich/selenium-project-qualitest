@@ -42,7 +42,7 @@ public class AddReviewTest {
      * Asserts whether the Products page is displayed as expected.
      */
     @Description("Verify the Products page load successfully")
-    @Test(groups = {"Regression, ProductTests"}, priority = 1)
+    @Test(groups = {"Regression", "ProductTests"}, priority = 1)
     public void testProductsPage() {
         Assert.assertTrue(actions.goToProductsPage(), "All products page did not load successfully");
     }
@@ -52,7 +52,7 @@ public class AddReviewTest {
      * Asserts whether the Product details page is displayed as expected.
      */
     @Description("Verify the Product details page load successfully")
-    @Test(groups = {"Regression, ProductTests"}, priority = 2)
+    @Test(groups = {"Regression", "ProductTests"}, priority = 2)
     public void testProductsDetailsPage() {
         Assert.assertTrue(actions.visitProductDetails(), "Products details page did not load successfully");
     }
